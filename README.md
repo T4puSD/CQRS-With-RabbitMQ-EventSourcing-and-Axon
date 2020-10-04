@@ -14,8 +14,8 @@ It is a message broker which provide message queuing service. It means that inst
 
 ## Project Details
 * **AccountCommandProject:** It is responsible for handling every command.
-      It uses axon-server's in built database to store every event that occure in the project. It is running on port 8080.
+      It uses axon-server's in built database to store every event that occure in the project. It is running on port **8080.**
 * **AccountQueryProject:** It is responsible for handling the queries.
-      It uses h2-database to store only the aggregated result after every transaction. It is running on port 8081.
+      It uses h2-database to store only the aggregated result after every transaction. It is running on port **8081.**
 
 They both communicate with each other with RabbitMQ. The rabbitmq implementation in this project is very simple. AccountCommandProject submits the state of the aggregated result after each event into rabbitmq and at other side of the queue AccountQueryProject consume those state and change the account balance and state of the user accordingly.
