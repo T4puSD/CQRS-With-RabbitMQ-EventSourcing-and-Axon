@@ -6,6 +6,9 @@ The full form of CQRS means Command Query Responsibility Segragation. It means t
 one should only change the state of the domain and other is only responsible to provide the view of the current state of the data.
 Commands are responsible for the state changes in a domain and Queries are responsible to provide view data to the end user.
 
+## What is Eventually Consistence Data?
+Embracing high scalability and ensuring high availability of the application is the main target of CQRS applications, but that produce the consistency issue in the data. It means that it is not guaranteed that we will always get the consistence account balance in our service everytime. If we try to read and write into the same account at the same time then the incostency might occure but in the end of the operation we will have the consistence balance in the account.
+
 ## What is RabbitMQ?
 It is a message broker which provide message queuing service. It means that instead of direct service to service call we can publish our message into a queue and any consumer which is subcribed to that queue can get that message whenever the consumer is free. Spring Boot already support rabbitmq with it's AMQP(Adcance Message Queuing Protocol) dependecy. So, impmlementing rabbitmq in spring boot is relatively easy with pre existing annotations.
 
