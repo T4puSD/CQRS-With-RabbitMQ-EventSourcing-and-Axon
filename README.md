@@ -13,9 +13,16 @@ Embracing high scalability and ensuring high availability of the application is 
 It is a message broker which provide message queuing service. It means that instead of direct service to service call we can publish our message into a queue and any consumer which is subcribed to that queue can get that message whenever the consumer is free. Spring Boot already support rabbitmq with it's AMQP(Adcance Message Queuing Protocol) dependecy. So, impmlementing rabbitmq in spring boot is relatively easy with pre existing annotations.
 
 ## Project Details
-* **AccountCommandProject:** It is responsible for handling every command.
-      It uses axon-server's in built database to store every event that occure in the project. It is running on port **8080.**
-* **AccountQueryProject:** It is responsible for handling the queries.
-      It uses h2-database to store only the aggregated result after every transaction. It is running on port **8081.**
+There are two differnet project in this repository. Both are handloing differnet task:
+
+### AccountCommandProject
+* **Responsibility:** It is responsible for handling every command.
+* **Database:** It uses axon-server's in built database to store every event that occure in the project. 
+* **Port:** It will run on port **8080.**
+
+### AccountQueryProject
+* **Responsibility:** It is responsible for handling the queries.
+* **Database:** It uses h2-database to store only the aggregated result after every transaction.
+* **Port:** It will run on port **8081.**
 
 They both communicate with each other with RabbitMQ. The rabbitmq implementation in this project is very simple. AccountCommandProject submits the state of the aggregated result after each event into rabbitmq and at other side of the queue AccountQueryProject consume those state and change the account balance and state of the user accordingly.
